@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+int main() {
+  setlocale(LC_ALL, "Portuguese"); 
+  
+  int i, arvore, alvo;
+
+  // Apresentação do jogo
+  printf("|=|=|=|={ Bem-vindo ao jogo do marciano }=|=|=|=|\n");
+  printf(" ==|> Um marciano chegou a uma floresta e se escondeu atrás de uma das 100 árvores "
+         "quando viu um caçador.\nO caçador só tinha cinco balas em sua espingarda. <|==\n");
+  printf("==|> Marciano, escolha sua árvore (de 1 a 100): ");
+  scanf("%d", &arvore);  // O marciano escolhe a árvore onde está escondido
+  system("cls");  // Limpa a tela (em Windows) - em Linux/Mac use "clear"
+
+  // O caçador tem 5 tiros para tentar acertar a árvore onde o marciano está
+  for (i = 1; i <= 5; i++) {
+      printf("%dº tiro\nEscolha uma árvore: ", i);
+      scanf("%d", &alvo);  // O caçador escolhe a árvore onde acha que o marciano está escondido
+
+      // Verifica a posição do alvo e compara com a posição do marciano
+      if (alvo > arvore) {
+          printf("sharamangashorabicanto (estou mais à esquerda)\n");
+      }
+      else if (alvo < arvore) {
+          printf("sharamangashorabicanto (estou mais à direita)\n");
+      }
+      else {
+          printf("aaaahgg!!! (morriiii!!!)\n");
+          break;  // O marciano foi encontrado, fim do jogo
+      }
+
+      // Se o caçador não acertou o marciano após 5 tiros
+      if (i == 5) {
+          printf("Estava escondido na árvore %d\n", arvore);
+          printf("HAHAHAHAHA Você será levado para marte\n");
+      }
+  }
+  system("pause");
+  return 0;
+}
